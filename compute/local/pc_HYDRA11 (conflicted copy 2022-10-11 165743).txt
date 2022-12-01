@@ -1,0 +1,176 @@
+starting worker pid=183088 on localhost:11761 at 21:55:04.582
+starting worker pid=188124 on localhost:11761 at 21:55:04.829
+
+Attache Paket: 'lubridate'
+
+Die folgenden Objekte sind maskiert von 'package:base':
+
+    date, intersect, setdiff, union
+
+
+Attache Paket: 'lubridate'
+
+Die folgenden Objekte sind maskiert von 'package:base':
+
+    date, intersect, setdiff, union
+
+
+Attache Paket: 'data.table'
+
+Die folgenden Objekte sind maskiert von 'package:lubridate':
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+
+Attache Paket: 'data.table'
+
+Die folgenden Objekte sind maskiert von 'package:lubridate':
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+Fehler in unserialize(node$con) : Lesefehler aus Verbindung
+Ruft auf: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Fehler in unserialize(node$con) : Lesefehler aus Verbindung
+Ruft auf: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Ausführung angehalten
+Ausführung angehalten
+starting worker pid=144216 on localhost:11761 at 21:57:02.274
+starting worker pid=39748 on localhost:11761 at 21:57:02.522
+
+Attache Paket: 'lubridate'
+
+Die folgenden Objekte sind maskiert von 'package:base':
+
+    date, intersect, setdiff, union
+
+
+Attache Paket: 'lubridate'
+
+Die folgenden Objekte sind maskiert von 'package:base':
+
+    date, intersect, setdiff, union
+
+
+Attache Paket: 'data.table'
+
+
+Attache Paket: 'data.table'
+
+Die folgenden Objekte sind maskiert von 'package:lubridate':
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+Die folgenden Objekte sind maskiert von 'package:lubridate':
+
+    hour, isoweek, mday, minute, month, quarter, second, wday, week,
+    yday, year
+
+Lade nötiges Paket: stats4
+Lade nötiges Paket: stats4
+Lade nötiges Paket: evd
+Lade nötiges Paket: evd
+[1] "1939-02-08 09:05:57 UTC"
+[1] "1938-06-11 22:50:37 UTC"
+[1] "1939-03-02 20:07:37 UTC"
+[1] "1938-08-10 17:09:17 UTC"
+[1] "1939-03-15 00:07:17 UTC"
+[1] "1938-10-01 16:46:43 UTC"
+[1] "1939-04-24 06:26:19 UTC"
+[1] "1938-10-03 20:54:56 UTC"
+[1] "1939-06-02 14:43:44 UTC"
+[1] "1939-04-03 18:22:53 UTC"
+[1] "1939-08-15 17:51:42 UTC"
+[1] "1939-05-04 00:33:41 UTC"
+[1] "1939-08-25 07:26:05 UTC"
+[1] "1939-05-04 09:46:21 UTC"
+[1] "1939-08-27 08:38:10 UTC"
+[1] "1939-07-24 14:05:20 UTC"
+[1] "1939-10-08 01:41:05 UTC"
+[1] "1939-08-16 06:56:24 UTC"
+[1] "1939-10-20 18:26:31 UTC"
+[1] "1939-08-25 16:09:30 UTC"
+[1] "1939-10-26 18:14:12 UTC"
+[1] "1939-08-30 00:54:27 UTC"
+[1] "1939-11-26 11:40:58 UTC"
+[1] "1939-09-14 17:27:56 UTC"
+[1] "1939-12-13 10:38:58 UTC"
+[1] "1939-09-21 14:48:05 UTC"
+[1] "1939-12-14 10:46:29 UTC"
+[1] "1939-10-01 16:46:43 UTC"
+[1] "1940-01-07 15:09:49 UTC"
+[1] "1940-01-01 19:41:36 UTC"
+[1] "1941-01-07 14:38:26 UTC"
+[1] "1941-01-02 17:19:24 UTC"
+[1] "1942-01-02 02:32:33 UTC"
+[1] "1942-01-02 09:28:21 UTC"
+[1] "1943-01-02 09:28:21 UTC"
+[1] "1943-01-01 10:03:18 UTC"
+[1] "1944-01-01 05:06:14 UTC"
+[1] "1944-01-02 09:13:53 UTC"
+[1] "1945-01-01 13:23:18 UTC"
+[1] "1945-01-02 12:33:19 UTC"
+[1] "1946-01-02 06:07:47 UTC"
+[1] "1946-01-01 05:28:23 UTC"
+[1] "1947-01-01 03:05:03 UTC"
+[1] "1947-01-01 02:43:03 UTC"
+[1] "1948-01-01 05:37:27 UTC"
+[1] "1948-01-01 02:43:03 UTC"
+[1] "1949-01-01 05:30:54 UTC"
+[1] "1949-01-01 13:12:09 UTC"
+[1] "1950-01-01 22:54:58 UTC"
+[1] "1950-01-02 05:55:45 UTC"
+[1] "1951-01-01 13:15:26 UTC"
+[1] "1951-01-01 02:13:48 UTC"
+[1] "1952-01-01 15:17:43 UTC"
+[1] "1952-01-02 17:17:30 UTC"
+[1] "1953-01-02 04:47:45 UTC"
+[1] "1953-01-02 01:17:06 UTC"
+[1] "1954-01-02 05:59:29 UTC"
+[1] "1954-01-01 05:36:56 UTC"
+[1] "1955-01-01 10:56:29 UTC"
+[1] "1955-01-02 00:28:50 UTC"
+[1] "1956-01-01 13:12:53 UTC"
+[1] "1956-01-02 03:17:43 UTC"
+[1] "1957-01-01 03:56:31 UTC"
+[1] "1957-01-01 17:00:10 UTC"
+[1] "1958-01-01 03:06:14 UTC"
+[1] "1958-01-01 07:41:18 UTC"
+[1] "1959-01-01 00:17:51 UTC"
+[1] "1959-01-01 07:31:02 UTC"
+[1] "1960-01-01 00:08:53 UTC"
+[1] "1960-01-01 07:31:02 UTC"
+[1] "1961-01-01 16:41:13 UTC"
+[1] "1961-01-01 15:55:04 UTC"
+[1] "1962-01-01 07:41:40 UTC"
+[1] "1962-01-01 12:16:25 UTC"
+[1] "1963-01-01 16:41:13 UTC"
+[1] "1963-01-01 11:18:54 UTC"
+[1] "1964-01-03 00:34:16 UTC"
+[1] "1964-01-02 10:58:47 UTC"
+[1] "1965-01-01 10:46:19 UTC"
+[1] "1965-01-01 08:14:41 UTC"
+[1] "1966-01-01 00:07:12 UTC"
+[1] "1966-01-02 11:32:30 UTC"
+[1] "1967-01-01 00:07:12 UTC"
+[1] "1967-01-02 11:32:30 UTC"
+[1] "1968-01-01 00:07:12 UTC"
+[1] "1968-01-02 11:32:30 UTC"
+[1] "1969-01-01 00:34:16 UTC"
+[1] "1969-01-01 11:32:30 UTC"
+[1] "1970-01-01 00:34:15 UTC"
+[1] "1970-01-01 11:32:29 UTC"
+[1] "1971-01-01 00:34:15 UTC"
+[1] "1971-01-01 06:43:54 UTC"
+[1] "1972-01-01 00:34:15 UTC"
+[1] "1972-01-02 18:32:15 UTC"
+[1] "1973-01-02 06:46:29 UTC"
+[1] "1973-01-01 18:32:15 UTC"
+[1] "1974-01-02 06:46:29 UTC"
+[1] "1974-01-01 18:32:15 UTC"
+[1] "1975-01-02 06:46:29 UTC"
+[1] "1975-01-01 18:32:15 UTC"
+[1] "1976-01-02 06:46:29 UTC"
+[1] "1976-01-01 18:32:15 UTC"
