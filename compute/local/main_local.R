@@ -26,7 +26,7 @@ N <- ne*iter     # total nr of evaluations = n0+N
 id_datetime_result <- generate_unique_id()
 
 # Path to files 
-global_path <- file.path(id_datetime_result$Id, "results", paste(pop),
+global_path <- file.path("results", id_datetime_result$Id, paste(pop),
                          paste0("n_sim_", nsim),
                          paste0("ini_c_", ini_c),
                          paste0("ne_", ne),

@@ -45,7 +45,7 @@ sim_params <- create_sim_params_data_frame(pop, iniY, endY, ini_c, n0, nsim, ne,
 id_datetime_result <- generate_unique_id()
 
 # Path to files 
-fake_global_path <- file.path(id_datetime_result$Id,"fake_results", paste(pop),
+fake_global_path <- file.path("results", id_datetime_result$Id,"fake_results", paste(pop),
                               paste0("n_sim_", nsim),
                               paste0("ini_c_", ini_c),
                               paste0("ne_", ne),
@@ -71,13 +71,6 @@ output <- parallel_comfert(params = fake_params[rep(seq_len(nrow(fake_params)), 
                               iniY = iniY,
                               endY = endY)
 
-
-load_test_output_result <- function(){
-  
-  
-}
-
-output <- load_test_output_result()
 # respetar el formato de asfrs.csv lo guardo en el mismo path. fake_asfrs.csv
 # cambiar el path para que busque el fake_asfrs.csv get_fake_obs()
 save_res(results = output, pars = fake_params, fake_res_path, seq=1:1, nsim, delete = TRUE)
@@ -86,7 +79,7 @@ save_res(results = output, pars = fake_params, fake_res_path, seq=1:1, nsim, del
 generate_mean_fake_res()
 
 # Path to files 
-global_path <- file.path(id_datetime_result$Id, "results", paste(pop),
+global_path <- file.path("results", id_datetime_result$Id, paste(pop),
                          paste0("n_sim_", nsim),
                          paste0("ini_c_", ini_c),
                          paste0("ne_", ne),
