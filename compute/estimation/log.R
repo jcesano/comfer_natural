@@ -75,6 +75,7 @@ insert_in_log_only_sim <- function(execution_log, log_path_filename, id_datetime
   execution_log[new_pos,]$ne <- sim_params[7,2]
   execution_log[new_pos,]$iter <- sim_params[8,2]
   execution_log[new_pos,]$N <- sim_params[9,2]
+  
   execution_log[new_pos,]$alpha <- info_rank_1[2,2]
   execution_log[new_pos,]$kappa <- info_rank_1[3,2]
   execution_log[new_pos,]$g_shape <- info_rank_1[4,2]
@@ -145,36 +146,46 @@ insert_in_log_complete <- function(execution_log, log_path_filename, id_datetime
   return(execution_log)
 }
 
-save_log <-function(id_datetime_result, sim_params, info_true, info_fake, fake_obs = TRUE){
+get_log <-function(log_path_filename){
+  df_log <- read.csv(file=log_path_filename,header = TRUE)
+  
+  return(df_log)
+}
+
+save_log <-function(id_datetime_result, sim_params, info_sim, info_fake, fake_obs = TRUE){
   # saving information of fake data to generate population and information of simulation of the model
-  save_log_complete <-function(log_path, log_filename, sim_params, info_fake, info_sim){
+  save_log_complete <-function(log_path, log_filename, sim_params, info_sim, info_fake){
+    
+    # browser()
     execution_log <- get_log(file.path(log_path,log_filename))
-    execution_log <- insert_in_log_complete(execution_log, file.path(log_path, log_filename), id_datetime_result, sim_params, info_true, info_fake)
+    execution_log <- insert_in_log_complete(execution_log, file.path(log_path, log_filename), id_datetime_result, sim_params, info_sim, info_fake)
+    
+    return(execution_log)
   }
   
   # saving only data of simulation of the model
   save_log_only_sim <- function(log_path, log_filename, sim_params, info_sim){
     execution_log <- get_log(file.path(log_path,log_filename))
-    execution_log <- insert_in_log_only_sim(df_log, file.path(log_path, log_filename), id_datetime_result, sim_params, info_true)
+    execution_log <- insert_in_log_only_sim(execution_log, file.path(log_path, log_filename), id_datetime_result, sim_params, info_true)
+    
+    return(execution_log)
   }
   
-  log_path <- getwd()
+  log_filename <- "comfert_natural_log.csv"
+  log_path <- file.path("..","log")
   
-  log_df <- get_log()
+  # log_df <- get_log(log_path, log_filename)
   
   if(fake_obs){
-    save_log_complete(info_fake, info_sim)
+    current_log <- save_log_complete(log_path, log_filename, sim_params, info_sim, info_fake)
   }
   else{
-    save_log_only_sim(info_sim)
+    current_log <- save_log_only_sim(log_path, log_filename,info_sim)
   }
+  
+  return(current_log)
 }
 
-get_log <-function(log_full_path, log_filename){
-  df_log <- read.csv(file=file.path(log_path, log_filename),header = TRUE)
-  
-  return(df_log)
-}
 
 #### Testing Code #####
 # log_path <- "/Users/juliocesano/Nextcloud/comfert/comfert_natural/compute/log"

@@ -45,14 +45,17 @@ sim_params <- create_sim_params_data_frame(pop, iniY, endY, ini_c, n0, nsim, ne,
 id_datetime_result <- generate_unique_id()
 
 # Path to files 
-fake_global_path <- file.path("results", id_datetime_result$Id,"fake_results", paste(pop),
-                              paste0("n_sim_", nsim),
-                              paste0("ini_c_", ini_c),
-                              paste0("ne_", ne),
-                              paste0("N_", N))
+# fake_global_path <- file.path("results", id_datetime_result$Id,"fake_results", paste(pop),
+#                               paste0("n_sim_", nsim),
+#                               paste0("ini_c_", ini_c),
+#                               paste0("ne_", ne),
+#                               paste0("N_", N))
+
+fake_global_path <- file.path("results", id_datetime_result$Id,"fake_results")
 
 # fake results' path
-fake_res_path <- file.path(fake_global_path,"fake_results")
+# fake_res_path <- file.path(fake_global_path,"fake_results")
+fake_res_path <- fake_global_path
 
 # Priors    
 priors <- data.frame(alpha = c(34,37),     # inflection point decline of fecundability
@@ -79,14 +82,17 @@ save_res(results = output, pars = fake_params, fake_res_path, seq=1:1, nsim, del
 generate_mean_fake_res()
 
 # Path to files 
-global_path <- file.path("results", id_datetime_result$Id, paste(pop),
-                         paste0("n_sim_", nsim),
-                         paste0("ini_c_", ini_c),
-                         paste0("ne_", ne),
-                         paste0("N_", N))
+# global_path <- file.path("results", id_datetime_result$Id, paste(pop),
+#                          paste0("n_sim_", nsim),
+#                          paste0("ini_c_", ini_c),
+#                          paste0("ne_", ne),
+#                          paste0("N_", N))
+
+global_path <- file.path("results", id_datetime_result$Id, paste(pop))
 
 # results' path  
-res_path <- file.path(global_path,"results")
+# res_path <- file.path(global_path,"results")
+res_path <- global_path
 
 params <- get_new_points(priors, n0) # Initial sample of parameter combinations  
 
