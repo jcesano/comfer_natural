@@ -36,7 +36,7 @@ create_and_save_empty_log <- function(log_path, log_filename){
   
   colnames(df_log) <- column_names
   
-  write.csv(df_log, full_log_path, row.names = TRUE)
+  write.csv(df_log, full_log_path, row.names = FALSE)
   
   return(df_log)
 }
@@ -90,7 +90,7 @@ insert_in_log_only_sim <- function(execution_log, log_path_filename, id_datetime
   execution_log[new_pos,]$fake_mau <- 0
   execution_log[new_pos,]$fake_nsp <- 0
   
-  write.csv(execution_log, log_path_filename, row.names = TRUE)
+  write.csv(execution_log, log_path_filename, row.names = FALSE)
   
   return(execution_log)
 }
@@ -141,7 +141,7 @@ insert_in_log_complete <- function(execution_log, log_path_filename, id_datetime
   execution_log[new_pos,]$fake_mau <- info_fake[6,2]
   execution_log[new_pos,]$fake_nsp <- info_fake[7,2]
   
-  write.csv(execution_log, log_path_filename, row.names = TRUE)
+  write.csv(execution_log, log_path_filename, row.names = FALSE)
   
   return(execution_log)
 }
@@ -166,7 +166,7 @@ save_log <-function(id_datetime_result, sim_params, info_sim, info_fake, fake_ob
   # saving only data of simulation of the model
   save_log_only_sim <- function(log_path, log_filename, sim_params, info_sim){
     execution_log <- get_log(file.path(log_path,log_filename))
-    execution_log <- insert_in_log_only_sim(execution_log, file.path(log_path, log_filename), id_datetime_result, sim_params, info_true)
+    execution_log <- insert_in_log_only_sim(execution_log, file.path(log_path, log_filename), id_datetime_result, sim_params, info_sim)
     
     return(execution_log)
   }
@@ -180,7 +180,7 @@ save_log <-function(id_datetime_result, sim_params, info_sim, info_fake, fake_ob
     current_log <- save_log_complete(log_path, log_filename, sim_params, info_sim, info_fake)
   }
   else{
-    current_log <- save_log_only_sim(log_path, log_filename,info_sim)
+    current_log <- save_log_only_sim(log_path, log_filename, sim_params, info_sim)
   }
   
   return(current_log)

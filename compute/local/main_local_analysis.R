@@ -29,18 +29,25 @@ start <- Sys.time()
 # N <- 30     # total nr of evaluations = n0+N
 
 # Model parameters #
+# pop <- "HT"  # pop for which simulations are performed 
+# iniY <- 1925 # years for which the simulations are performed
+# endY <- 1976 # years for which the simulations are performed
+# ini_c <- 2000 # size of the initial birth cohorts of the model 
+# n0 <- 40     # size of initial sample of param combinations
+# nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
+# ne <- 40     # nr of new evaluations at each iteration of the bayes opt. algorithm
+# iter <- 20
+# N <- ne*iter     # total nr of evaluations = n0+N
+
 pop <- "HT"  # pop for which simulations are performed 
 iniY <- 1925 # years for which the simulations are performed
 endY <- 1976 # years for which the simulations are performed
-ini_c <- 2000 # size of the initial birth cohorts of the model 
-n0 <- 40     # size of initial sample of param combinations
+ini_c <- 2000 # size of the initial birth cohorts of the model
+n0 <- 20     # size of initial sample of param combinations
 nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
-ne <- 40     # nr of new evaluations at each iteration of the bayes opt. algorithm
-iter <- 20
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
+iter <- 10
 N <- ne*iter     # total nr of evaluations = n0+N
-
-# create a dataframe with the hyperparameters used to execute the model
-sim_params <- create_sim_params_data_frame(pop, iniY, endY, ini_c, n0, nsim, ne, iter, N)
 
 id_datetime_result <- generate_unique_id()
 
@@ -82,17 +89,19 @@ save_res(results = output, pars = fake_params, fake_res_path, seq=1:1, nsim, del
 generate_mean_fake_res()
 
 # Path to files 
+global_path <- file.path("results", id_datetime_result$Id, "sim_results")
+
 # global_path <- file.path("results", id_datetime_result$Id, paste(pop),
 #                          paste0("n_sim_", nsim),
 #                          paste0("ini_c_", ini_c),
 #                          paste0("ne_", ne),
 #                          paste0("N_", N))
 
-global_path <- file.path("results", id_datetime_result$Id, paste(pop))
+#global_path <- file.path("results", id_datetime_result$Id, paste(pop))
 
 # results' path  
-# res_path <- file.path(global_path,"results")
-res_path <- global_path
+res_path <- file.path(global_path,"results")
+#res_path <- global_path
 
 params <- get_new_points(priors, n0) # Initial sample of parameter combinations  
 
@@ -160,3 +169,4 @@ abline(v = info_fake[6,]$V2, col="red", lwd=3, lty=2)
 
 hist(accepted$nsp)
 abline(v = info_fake[7,]$V2, col="red", lwd=3, lty=2)
+

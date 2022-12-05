@@ -106,7 +106,7 @@ optimize_comfert <- function(res_dir, global_dir, pop, iniY, endY, ini_c, n0, ns
   }
   
   sink(sa)
-  browser() 
+  #browser() 
   saveRDS(all_mse[-1,], paste0(paste0(global_dir,"/post/posterior.rds")))
   saveRDS(params, paste0(paste0(global_dir,"/params/parameters.rds")))
   sink()

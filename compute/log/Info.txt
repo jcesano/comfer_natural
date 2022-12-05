@@ -1,8 +1,0 @@
-
-Results obtained with combination of parameters : 
-alpha  :  35.19647 
-kappa  :  0.2831802 
-g_shape  :  3.944656 
-g_rate  :  37.79175 
-mau  :  20.11001 
-nsp  :  5.863096 

@@ -17,20 +17,25 @@ pop <- "HT"  # pop for which simulations are performed
 iniY <- 1925 # years for which the simulations are performed
 endY <- 1976 # years for which the simulations are performed
 ini_c <- 2000 # size of the initial birth cohorts of the model 
-n0 <- 40     # size of initial sample of param combinations
+n0 <- 20     # size of initial sample of param combinations
 nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
-ne <- 30     # nr of new evaluations at each iteration of the bayes opt. algorithm
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
 iter <- 10
 N <- ne*iter     # total nr of evaluations = n0+N
 
 id_datetime_result <- generate_unique_id()
 
 # Path to files 
-global_path <- file.path("results", id_datetime_result$Id, paste(pop),
-                         paste0("n_sim_", nsim),
-                         paste0("ini_c_", ini_c),
-                         paste0("ne_", ne),
-                         paste0("N_", N))
+# global_path <- file.path("results", id_datetime_result$Id, paste(pop),
+#                          paste0("n_sim_", nsim),
+#                          paste0("ini_c_", ini_c),
+#                          paste0("ne_", ne),
+#                          paste0("N_", N))
+
+# Path to files 
+global_path <- file.path("results", id_datetime_result$Id, "sim_results")
+
+
 # results' path  
 res_path <- file.path(global_path,"results")
 
@@ -52,7 +57,8 @@ output <- parallel_comfert(params = params[rep(seq_len(nrow(params)), each = nsi
                            endY = endY)
 
 # Save Results
-save_res(results = output, pars = params, res_path, seq = 1:n0, delete = TRUE)
+#save_res(results = output, pars = params, res_path, seq = 1:n0, delete = TRUE)
+save_res(results = output, pars = params, res_path, seq = 1:n0, nsim, delete = TRUE)
 
 dir.create(file.path(global_path, "post"), recursive = T)
 dir.create(file.path(global_path, "params"), recursive = T)
@@ -75,7 +81,7 @@ post[order(post$mse),]
 opt_res_dir <- check_paramset(global_path, rank = 1)
 
 # comparar opt_res_dir con el info.txt de fake_obs
-info_fake <- read.table(file.path(fake_res_path,"param_set_1","Info.txt"),sep=":",dec=".")
+#info_fake <- read.table(file.path(fake_res_path,"param_set_1","Info.txt"),sep=":",dec=".")
 info_rank_1 <- read.table(file.path(opt_res_dir,"Info.txt"),sep=":",dec=".")
 
 # create a dataframe with the hyperparameters used to execute the model
