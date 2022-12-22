@@ -1,0 +1,346 @@
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local")
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local")
+library(data.table); library(lubridate);
+library(mlegp); library(parallel); library(scales)
+#This source select the middle point of the grid.
+source (file.path("..","estimation","get_middle_grid_point.R"))
+source(file.path("..","estimation","get_new_points.R"))
+source(file.path("..","estimation","parallel_comfert.R"))
+source(file.path("..","estimation","optimize_comfert.R"))
+source(file.path("..","estimation","save_res.R"))
+source(file.path("..","estimation","save_fake_res.R"))
+source(file.path("..","estimation","generate_mean_fake_res.R"))
+start <- Sys.time()
+pop <- "HT"  # pop for which simulations are performed
+iniY <- 1925 # years for which the simulations are performed
+endY <- 1976 # years for which the simulations are performed
+ini_c <- 500 # size of the initial birth cohorts of the model
+n0 <- 20     # size of initial sample of param combinations
+nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
+N <- 30     # total nr of evaluations = n0+N
+# Path to files
+fake_global_path <- file.path("fake_results", paste(pop),
+paste0("n_sim_", nsim),
+paste0("ini_c_", ini_c),
+paste0("ne_", ne),
+paste0("N_", N))
+fake_global_path
+# fake results' path
+fake_res_path <- file.path(fake_global_path,"fake_results")
+fake_res_path
+# Priors
+priors <- data.frame(alpha = c(34,37),     # inflection point decline of fecundability
+kappa = c(0.29,0.45), # rate decline of fec.
+g_shape = c(4,6),     # gamma shape - heterogeneity fecundability
+g_rate = c(35,40),    # gamma rate - heterogeneity fecundability
+mau = c(17,18.5),       # mean age at union
+nsp = c(5.5,10))         # non susceptibility period
+fake_params <- get_middle_grid_point(priors) # Initial sample of parameter combinations
+fake_params
+generate_mean_fake_res()
+setwd("~/Nextcloud/comfert/comfert_natural/model_analysis/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1")
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1")
+# setwd("~/Nextcloud/comfert/comfert_natural/model_analysis/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1")
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1")
+#res_dir <- "~/Nextcloud/comfert/comfert_natural/model_analysis/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+res_names <- sapply(res_dir, function(x) {list.files(x, "RData", full.names = TRUE)})
+res_names
+sim <- lapply(res_names, readRDS)
+sim
+res_names
+sim
+fake_res_path
+save_fake_res(results = output, pars = fake_params, n0, nsim, delete = TRUE)
+output <- sim
+save_fake_res(results = output, pars = fake_params, n0, nsim, delete = TRUE)
+source(file.path("..","estimation","save_fake_res.R"))
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local")
+source(file.path("..","estimation","save_fake_res.R"))
+source(file.path("..","estimation","generate_mean_fake_res.R"))
+start <- Sys.time()
+pop <- "HT"  # pop for which simulations are performed
+iniY <- 1925 # years for which the simulations are performed
+endY <- 1976 # years for which the simulations are performed
+ini_c <- 500 # size of the initial birth cohorts of the model
+n0 <- 20     # size of initial sample of param combinations
+nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
+N <- 30     # total nr of evaluations = n0+N
+# Path to files
+fake_global_path <- file.path("fake_results", paste(pop),
+paste0("n_sim_", nsim),
+paste0("ini_c_", ini_c),
+paste0("ne_", ne),
+paste0("N_", N))
+# fake results' path
+fake_res_path <- file.path(fake_global_path,"fake_results")
+# Priors
+priors <- data.frame(alpha = c(34,37),     # inflection point decline of fecundability
+kappa = c(0.29,0.45), # rate decline of fec.
+g_shape = c(4,6),     # gamma shape - heterogeneity fecundability
+g_rate = c(35,40),    # gamma rate - heterogeneity fecundability
+mau = c(17,18.5),       # mean age at union
+nsp = c(5.5,10))         # non susceptibility period
+fake_params <- get_middle_grid_point(priors) # Initial sample of parameter combinations
+res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+res_names <- sapply(res_dir, function(x) {list.files(x, "RData", full.names = TRUE)})
+sim <- lapply(res_names, readRDS)
+output <- sim
+save_fake_res(results = output, pars = fake_params, n0, nsim, delete = TRUE)
+dir_names
+res
+n0
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local")
+library(data.table); library(lubridate);
+library(mlegp); library(parallel); library(scales)
+#This source select the middle point of the grid.
+source (file.path("..","estimation","get_middle_grid_point.R"))
+source(file.path("..","estimation","get_new_points.R"))
+source(file.path("..","estimation","parallel_comfert.R"))
+source(file.path("..","estimation","optimize_comfert.R"))
+source(file.path("..","estimation","save_res.R"))
+source(file.path("..","estimation","save_fake_res.R"))
+source(file.path("..","estimation","generate_mean_fake_res.R"))
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local")
+library(data.table); library(lubridate);
+library(mlegp); library(parallel); library(scales)
+#This source select the middle point of the grid.
+source (file.path("..","estimation","get_middle_grid_point.R"))
+source(file.path("..","estimation","get_new_points.R"))
+source(file.path("..","estimation","parallel_comfert.R"))
+source(file.path("..","estimation","optimize_comfert.R"))
+source(file.path("..","estimation","save_res.R"))
+source(file.path("..","estimation","save_fake_res.R"))
+source(file.path("..","estimation","generate_mean_fake_res.R"))
+start <- Sys.time()
+pop <- "HT"  # pop for which simulations are performed
+iniY <- 1925 # years for which the simulations are performed
+endY <- 1976 # years for which the simulations are performed
+ini_c <- 500 # size of the initial birth cohorts of the model
+n0 <- 20     # size of initial sample of param combinations
+nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
+N <- 30     # total nr of evaluations = n0+N
+# Path to files
+fake_global_path <- file.path("fake_results", paste(pop),
+paste0("n_sim_", nsim),
+paste0("ini_c_", ini_c),
+paste0("ne_", ne),
+paste0("N_", N))
+# fake results' path
+fake_res_path <- file.path(fake_global_path,"fake_results")
+# Priors
+priors <- data.frame(alpha = c(34,37),     # inflection point decline of fecundability
+kappa = c(0.29,0.45), # rate decline of fec.
+g_shape = c(4,6),     # gamma shape - heterogeneity fecundability
+g_rate = c(35,40),    # gamma rate - heterogeneity fecundability
+mau = c(17,18.5),       # mean age at union
+nsp = c(5.5,10))         # non susceptibility period
+fake_params <- get_middle_grid_point(priors) # Initial sample of parameter combinations
+res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+res_names <- sapply(res_dir, function(x) {list.files(x, "RData", full.names = TRUE)})
+sim <- lapply(res_names, readRDS)
+sim
+output
+output <- sim
+output
+save_fake_res(results = output, pars = fake_params, n0 = 1, nsim, delete = TRUE)
+n0
+fake_res_path
+full_names
+# saving fake obs in a csv file
+generate_mean_fake_res()
+setwd("~/Nextcloud/comfert/comfert_natural/compute/local")
+library(data.table); library(lubridate);
+library(mlegp); library(parallel); library(scales)
+#This source select the middle point of the grid.
+source (file.path("..","estimation","get_middle_grid_point.R"))
+source(file.path("..","estimation","get_new_points.R"))
+source(file.path("..","estimation","parallel_comfert.R"))
+source(file.path("..","estimation","optimize_comfert.R"))
+source(file.path("..","estimation","save_res.R"))
+source(file.path("..","estimation","save_fake_res.R"))
+source(file.path("..","estimation","generate_mean_fake_res.R"))
+start <- Sys.time()
+pop <- "HT"  # pop for which simulations are performed
+iniY <- 1925 # years for which the simulations are performed
+endY <- 1976 # years for which the simulations are performed
+ini_c <- 500 # size of the initial birth cohorts of the model
+n0 <- 20     # size of initial sample of param combinations
+nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
+N <- 30     # total nr of evaluations = n0+N
+# Path to files
+fake_global_path <- file.path("fake_results", paste(pop),
+paste0("n_sim_", nsim),
+paste0("ini_c_", ini_c),
+paste0("ne_", ne),
+paste0("N_", N))
+# fake results' path
+fake_res_path <- file.path(fake_global_path,"fake_results")
+# Priors
+priors <- data.frame(alpha = c(34,37),     # inflection point decline of fecundability
+kappa = c(0.29,0.45), # rate decline of fec.
+g_shape = c(4,6),     # gamma shape - heterogeneity fecundability
+g_rate = c(35,40),    # gamma rate - heterogeneity fecundability
+mau = c(17,18.5),       # mean age at union
+nsp = c(5.5,10))         # non susceptibility period
+fake_params <- get_middle_grid_point(priors) # Initial sample of parameter combinations
+fake_params
+fake_res_path
+library("rstudioapi")
+library("rstudioapi") # This allows to automatically set working directory to source opened file location
+setwd(dirname(getActiveDocumentContext()$path))
+getwd()
+library(data.table); library(lubridate);
+library(mlegp); library(parallel); library(scales)
+#This source select the middle point of the grid.
+source (file.path("..","estimation","get_middle_grid_point.R"))
+source(file.path("..","estimation","get_new_points.R"))
+source(file.path("..","estimation","parallel_comfert.R"))
+source(file.path("..","estimation","optimize_comfert.R"))
+source(file.path("..","estimation","save_res.R"))
+source(file.path("..","estimation","save_fake_res.R"))
+source(file.path("..","estimation","generate_mean_fake_res.R"))
+start <- Sys.time()
+pop <- "HT"  # pop for which simulations are performed
+iniY <- 1925 # years for which the simulations are performed
+endY <- 1976 # years for which the simulations are performed
+ini_c <- 500 # size of the initial birth cohorts of the model
+n0 <- 20     # size of initial sample of param combinations
+nsim <- 2    # nr of simulations in each evaluated point - this will produce a cluster of size n0*nsim
+ne <- 10     # nr of new evaluations at each iteration of the bayes opt. algorithm
+N <- 30     # total nr of evaluations = n0+N
+# Path to files
+fake_global_path <- file.path("fake_results", paste(pop),
+paste0("n_sim_", nsim),
+paste0("ini_c_", ini_c),
+paste0("ne_", ne),
+paste0("N_", N))
+# fake results' path
+fake_res_path <- file.path(fake_global_path,"fake_results")
+fake_res_path
+# Priors
+priors <- data.frame(alpha = c(34,37),     # inflection point decline of fecundability
+kappa = c(0.29,0.45), # rate decline of fec.
+g_shape = c(4,6),     # gamma shape - heterogeneity fecundability
+g_rate = c(35,40),    # gamma rate - heterogeneity fecundability
+mau = c(17,18.5),       # mean age at union
+nsp = c(5.5,10))         # non susceptibility period
+fake_params <- get_middle_grid_point(priors) # Initial sample of parameter combinations
+fake_params
+#####  Código de prueba #########
+res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+#####  Código de prueba #########
+res_dir_aux <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+res_names_aux <- sapply(res_dir, function(x) {list.files(x, "RData", full.names = TRUE)})
+res_names_aux
+sim_aux <- lapply(res_names, readRDS)
+sim_aux
+output <- sim_aux
+fake_res_path
+save_fake_res(results = output, pars = fake_params, n0 = 1, nsim, delete = TRUE)
+dir_names
+res_names
+full_names
+full_names
+fake_res_path
+# saving fake obs in a csv file
+generate_mean_fake_res()
+fake_res_dir
+fake_res_names
+n0
+fake_res_path
+global_path
+# Path to files
+global_path <- file.path("results", paste(pop),
+paste0("n_sim_", nsim),
+paste0("ini_c_", ini_c),
+paste0("ne_", ne),
+paste0("N_", N))
+global_path
+# results' path
+res_path <- file.path(global_path,"results")
+res_path
+#####  Código de prueba #########
+#res_dir_aux <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+opt_res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+# comparar opt_res_dir con el info.txt de fake_obs
+info_fake <- read.table(file.path(fake_res_path,"param_set_1","Info.txt"),sep=":",dec=".")
+info_rank_1 <- read.table(file.path(opt_res_dir,"Info.txt"),sep=":",dec=".")
+info_fake
+global_path
+opt_res_dir
+#####  Código de prueba #########
+global_path <- "results/HT/n_sim_2/ini_c_1000/ne_30/N_180/"
+#####  Código de prueba #########
+#res_dir_aux <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+opt_res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+# comparar opt_res_dir con el info.txt de fake_obs
+info_fake <- read.table(file.path(fake_res_path,"param_set_1","Info.txt"),sep=":",dec=".")
+info_rank_1 <- read.table(file.path(opt_res_dir,"Info.txt"),sep=":",dec=".")
+#
+plot_out(opt_res_dir, pop, save = F)
+# ANALYSIS
+source(file.path("..","analysis","check_paramset.R"))
+source(file.path("..","analysis","plot_out.R"))
+source(file.path("..","estimation","get_obs.R"))
+#
+plot_out(opt_res_dir, pop, save = F)
+# keep 10%  of values with lowest distance
+epsilon <- quantile(post$mse,probs = seq(0, 1, 0.10))[2]
+# Get posterior distribution
+post <- readRDS(file.path(global_path, "post", "posterior.rds"))
+post[order(post$mse),]
+opt_res_dir <- check_paramset(global_path, rank = 1)
+#####  Código de prueba #########
+#res_dir_aux <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+opt_res_dir <- "~/Nextcloud/comfert/comfert_natural/compute/local/results/HT/n_sim_2/ini_c_1000/ne_30/N_180/results/param_set_1"
+# keep 10%  of values with lowest distance
+epsilon <- quantile(post$mse,probs = seq(0, 1, 0.10))[2]
+accepted <- post[post$mse < epsilon,]
+# Aprox Posterior
+hist(accepted$alpha)
+hist(accepted$kappa)
+hist(accepted$g_shape)
+hist(accepted$g_rate)
+hist(accepted$mau)
+hist(accepted$nsp)
+info_fake
+info_fake[2,]
+info_fake[2,]$V2
+# Aprox Posterior
+hist(accepted$alpha)
+abline(v = info_fake[2,]$V2, col="red", lwd=3, lty=2)
+info_fake[3,]
+info_fake[4,]
+info_fake[5,]
+info_fake[6,]
+info_fake[7,]
+hist(accepted$g_shape)
+abline(v = info_fake[4,]$V2, col="red", lwd=3, lty=2)
+hist(accepted$g_rate)
+abline(v = info_fake[5,]$V2, col="red", lwd=3, lty=2)
+hist(accepted$mau)
+abline(v = info_fake[6,]$V2, col="red", lwd=3, lty=2)
+hist(accepted$nsp)
+abline(v = info_fake[7,]$V2, col="red", lwd=3, lty=2)
+a <- seq(17)
+max(a)
+min(a)
+b <- seq(30:41)
+b
+b <- seq(30,41)
+b
+max(b)
+min(b)
+seq <- 1:31
+max(seq_gradient_pal())
+max(seq)
+max(seq)
+min(seq)
+seq2 <- 31:63
+max(seq2)
+min(seq2)
